@@ -1,56 +1,63 @@
 using UnityEngine;
+using Game.Player;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Config")]
     [SerializeField] private float speed;
 
-    private Idk actions;
+    public Idk actions;
+    public Rigidbody2D rb;
+    public Vector2 moveDirection;
 
-    private Rigidbody2D rb;
-    private Animator animator; // Animator adicionado
-    private Vector2 moveDirection;
+    public PlayerAnimations playerAnimations;
 
-    private void Awake()
+    public Player player;
+
+    public void Awake()
     {
         actions = new Idk();
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>(); // Inicializa o Animator
+        playerAnimations = GetComponent<PlayerAnimations>();
+
+        player = GetComponent<Player>();
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         actions.Enable();
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         actions.Disable();
     }
 
-    private void Update()
+    public void Update()
     {
-        ReadMovement(); // Agora também atualiza o Animator
+        ReadMovement();
     }
 
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         Move();
     }
 
-    private void ReadMovement()
+    public void ReadMovement()
     {
         moveDirection = actions.Movement.Move.ReadValue<Vector2>().normalized;
 
-        // Se não houver movimento, sai do método
-        if (moveDirection == Vector2.zero) return;
+        if (moveDirection == Vector2.zero)
+        {
+            playerAnimations.SetMoveBoolTransition(false);
+            return;
+        }
 
-        // Atualiza os parâmetros do Animator para o BlendTree
-        animator.SetFloat("MoveX", moveDirection.x);
-        animator.SetFloat("MoveY", moveDirection.y);
+        playerAnimations.SetMoveBoolTransition(true);
+        playerAnimations.SetMoveAnimation(moveDirection);
     }
 
-    private void Move()
+    public void Move()
     {
         rb.MovePosition(rb.position + moveDirection * (speed * Time.fixedDeltaTime));
     }

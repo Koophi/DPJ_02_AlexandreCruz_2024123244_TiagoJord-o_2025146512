@@ -353,6 +353,9 @@ GameObject:
   - component: {fileID: 2016820861}
   - component: {fileID: 2016820860}
   - component: {fileID: 2016820864}
+  - component: {fileID: 2016820865}
+  - component: {fileID: 2016820866}
+  - component: {fileID: 2016820867}
   m_Layer: 0
   m_Name: PlayerNinja
   m_TagString: Untagged
@@ -400,6 +403,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   speed: 5
+  rb: {fileID: 0}
+  moveDirection: {x: 0, y: 0}
+  playerAnimations: {fileID: 0}
+  player: {fileID: 0}
 --- !u!212 &2016820862
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -495,6 +502,46 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2016820865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016820859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e0fce05d3e57b4db24c0a9386962b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  playerStats: {fileID: 11400000, guid: 37b28a1e66abe424d8aca7f7a2cd63cc, type: 2}
+  playerAnimations: {fileID: 0}
+--- !u!114 &2016820866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016820859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fbec1329df90f347a8b67e753d8d5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimations
+  animator: {fileID: 0}
+--- !u!114 &2016820867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016820859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe8ea9cbdc63e24ab30428d7eaa931b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Player.Player
+  playerStats: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
